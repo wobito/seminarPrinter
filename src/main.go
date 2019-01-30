@@ -5,7 +5,7 @@ func main() {
 }
 
 func workerMain() {
-	worker := makeNewWorker("45.55.53.144:11300", "printer")
+	worker := makeNewWorker("localhost:11300", "printer")
 	worker.Connect()
 	defer worker.Close()
 
