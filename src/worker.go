@@ -42,7 +42,18 @@ func (worker *Worker) ProcessJob() {
 	fmt.Println("-- Printing... ", prtData.Data.Printer)
 
 	worker.MasterBeanstalk.serverConnection.Delete(id)
+
+	worker.DeleteFile(prtData.Data.File)
+
 	fmt.Println("Job Released:", id)
+}
+
+func (worker *Worker) DeleteFile(file string) {
+	filePath := worker.storageDir + file
+	err := os.Remove(filePath)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func (worker *Worker) PrintJob(data JobData) {
