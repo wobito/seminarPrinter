@@ -64,7 +64,7 @@ func (worker *Worker) DownloadFile(data JobData) error {
 	worker.MakeStorageDir()
 	fmt.Println("-- Downloading File...")
 	storagePath := worker.storageDir + data.File
-	fileUrl := "https://core.craigproctor.com/ipad/get-badge/" + data.File
+	fileUrl := os.Getenv("REMOTE_FILE") + data.File
 
 	out, err := os.Create(storagePath)
 	if err != nil {

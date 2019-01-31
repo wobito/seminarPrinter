@@ -18,8 +18,9 @@ func main() {
 
 func workerMain() {
 	beanstalkServerAddress := os.Getenv("BEANSTALK_SERVER")
+	beanstalkTube := os.Getenv("BEANSTALK_TUBE")
 
-	worker := makeNewWorker(beanstalkServerAddress, "printer")
+	worker := makeNewWorker(beanstalkServerAddress, beanstalkTube)
 	worker.Connect()
 	defer worker.Close()
 
